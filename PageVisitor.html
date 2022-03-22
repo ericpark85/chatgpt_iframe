@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Page Visitor</title>
+</head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	var timer =null;
+    $("#btnGo").click(function(){
+    	if(timer==null){
+	        var interval = $('#interval').val();
+	        mycode();
+	        timer =  setInterval(mycode, interval*1000);
+	        $('#btnGo').prop('disabled', true);
+    		$('#btnStop').prop('disabled', false);
+    	}
+    });
+   $("#btnStop").click(function(){
+    	if(timer!=null){
+    		clearInterval(timer);
+    		timer =null;
+    		$('#btnGo').prop('disabled', false);
+    		$('#btnStop').prop('disabled', true);
+    	}
+    });
+    
+    
+});
+function mycode() {
+		var url = $('#url').val();
+	     window.open(url); 
+	}
+</script>
+<style type="text/css">
+	body {
+    text-align: center;
+	}
+	form {
+		margin-top: 20%;
+	    display: inline-block;
+	}
+</style>
+<body>
+	<form>
+    	<label>Url:</label>
+		<input type="text" name="fname" id="url" value="http://">
+		<br/>
+		<label>Interval(s):</label>
+		<input type="number" name="lname" id="interval" value="5">
+		<br>
+		<button id="btnGo">Go</button>
+		<button id="btnStop">Stop</button>
+  </form>
+</body>
+</html>
