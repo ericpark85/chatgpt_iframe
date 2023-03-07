@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Chatbot</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      /* CSS to style the chatbot container */
+      #chatbot-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 400px;
+        height: 500px;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ChatGPT</h1>
+    <div id="chatbot-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@openai/chat-api@0.5.1/dist/index.js"
+    onload="initializeChatbot()"></script>
+    <script>
+      async function initializeChatbot() {
+        const chat = new window.ChatAPI({
+          engine: "text-davinci-002",
+          apiKey: "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",
+        });
+
+        await chat.ready();
+
+        chat.open({
+          container: "chatbot-container",
+          prompt: "Hi, how can I assist you?",
+        });
+      }
+    </script>
+  </body>
+</html>
